@@ -1,0 +1,8 @@
+<app-search-bar
+  (searchFilter)="onSearchFilterUpdate($event)">
+</app-search-bar>
+<app-booklist
+  [booksToDisplay]="booksToDisplay$ | async"
+  (bookSelected)="onBookSelected($any($event))"
+  (authorSelected)="onAuthorSelected($any($event))">
+</app-booklist>

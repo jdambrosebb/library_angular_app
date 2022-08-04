@@ -1,0 +1,5 @@
+<app-bookview [book]="book$ | async"
+              (authorSelectEmitter)="onAuthorSelected($event)"
+              (bookDeleted)="onBookDelete()"
+              (updateBookPressed)="onUpdateClicked()">
+</app-bookview>

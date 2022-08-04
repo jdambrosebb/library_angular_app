@@ -1,0 +1,22 @@
+<mat-card *ngIf="author">
+  <mat-card-header>
+    <mat-card-title>{{author.firstname + ' ' + author.lastname}}</mat-card-title>
+    <mat-card-subtitle *ngIf ="author.about">{{author.about}}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <h3>{{'Books by ' + author.firstname + ' ' + author.lastname + ": "}}</h3>
+    <mat-list role="list" *ngIf="author.books as books">
+    <div *ngFor="let book of books">
+      <mat-list-item
+        (click)="onBookSelected(book.bookId)">
+        {{book.title}}</mat-list-item>
+      </div>
+    </mat-list>
+</mat-card-content>
+
+<button mat-flat-button color="warn"
+        matTooltip="WARNING: All books by this author will also be deleted."
+        (click)="onAutorDelete(author)">Delete</button>
+
+</mat-card>

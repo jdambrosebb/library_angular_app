@@ -1,0 +1,27 @@
+<mat-card *ngIf = "book">
+  <mat-card-title>{{book.title}}</mat-card-title>
+  <mat-card-subtitle
+    (click)="onAuthorSelected(book.author.authorId)"
+    [title]="book.author.author_firstname+' '+ book.author.author_lastname">
+    {{book.author.author_firstname + " " + book.author.author_lastname}}
+  </mat-card-subtitle>
+  <p *ngIf ="book.synopsis">{{book.synopsis}}</p>
+  <div *ngIf = "userService.ifIsCheckedOut(book); then isCheckedOut else notCheckedOut"></div>
+  <ng-template #isCheckedOut>
+    <button mat-flat-button color="primary"
+    (click)="onReturnClick(book)">Return</button>
+  </ng-template>
+  <ng-template #notCheckedOut>
+    <button mat-flat-button color="primary"
+    (click)="onCheckOutClick(book)">Check Out</button>
+  </ng-template>
+  <button mat-flat-button color="accent"
+    (click)="onDelete()">Delete</button>
+  <button mat-flat-button color="primary"
+    (click)="onEditPressed()">Edit</button>
+  <mat-chip-list>
+    <div *ngFor="let genre of book.genre">
+      <mat-chip>{{genre}}</mat-chip>
+    </div>
+  </mat-chip-list>
+</mat-card>

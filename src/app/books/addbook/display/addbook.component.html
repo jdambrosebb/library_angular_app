@@ -1,0 +1,51 @@
+<form class="new_book_form" [formGroup]="book_form">
+  <mat-form-field>
+    <mat-label>Title:</mat-label>
+    <input matInput type = "text" formControlName="title" id="title_input"/>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Synopsis:</mat-label>
+    <textarea matInput type = "text" formControlName="synopsis" id="synopsis_input"></textarea>
+  </mat-form-field>
+  <mat-checkbox formControlName="checkbox"
+                (change)="toggleNewAuthor()"
+                >Existing Author?</mat-checkbox>
+  <div *ngIf="state.addNewAuthor; then newAuthor else existingAuthor"></div>
+  <div *ngIf="state.editMode; then update else newBook"></div>
+  <button type="button" (click)="cancelDisplayClicked()">Cancel</button>
+</form>
+
+<ng-template #newAuthor [formGroup]="book_form">
+  <mat-form-field>
+    <mat-label>Author First Name:</mat-label>
+    <input matInput type = "text"  formControlName="firstname" id="author_fn"/>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Author Last name:</mat-label>
+    <input matInput type = "text"  formControlName="lastname" id="author_ln"/>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>About:</mat-label>
+    <textarea matInput type = "text"  formControlName="author_about" id="author_about"></textarea>
+  </mat-form-field>
+</ng-template>
+
+<ng-template #existingAuthor [formGroup]="book_form">
+  <mat-form-field *ngIf="authors">
+    <mat-label>Author:</mat-label>
+    <mat-select formControlName="authorSelection">
+        <mat-option *ngFor="let author of authors"
+          [value]="author.authorId"
+          (onSelectionChange)="selectAuthor(author)">
+          {{author.firstname + " " + author.lastname}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</ng-template>
+
+<ng-template #update>
+  <button type="button" (click)="updateBook()">Update</button>
+</ng-template>
+
+<ng-template #newBook>
+  <button type="button" (click)="saveBook()">Add</button>
+</ng-template>

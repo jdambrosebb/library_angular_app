@@ -1,0 +1,4 @@
+/* Removes hover color */
+.mat-chip.mat-standard-chip::after {
+  background: #0000;
+}

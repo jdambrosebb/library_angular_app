@@ -1,0 +1,5 @@
+<app-authorinfo
+  [author]="author$ | async"
+  (bookSelectEmitter)="onBookSelected($any($event))"
+  (onAuthorDeleted)="onAuthorDelete($event)">
+</app-authorinfo>

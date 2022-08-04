@@ -1,0 +1,7 @@
+<mat-card>
+  <h2>Checked Out: </h2>
+  <p *ngIf="!usersBooks.length">You don't have anything checked out...</p>
+  <ul *ngFor="let book of usersBooks">
+    <a [routerLink]="'/book/'+book.title"><span>{{book.title}}</span></a>
+  </ul>
+</mat-card>

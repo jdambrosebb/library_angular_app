@@ -1,0 +1,12 @@
+.content {
+  display: flex;
+}
+
+.content > * {
+  border: solid lightgray 2px;
+}
+
+.main_content {
+  flex: 1 1 12em;
+}
+

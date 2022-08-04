@@ -1,0 +1,6 @@
+<app-addbook
+    [authors]="authors$ | async"
+    [book]="book$ | async"
+    (createNewAuthor)="createNewAuthor($event)"
+    (createNewBook)="createNewBook($event)"
+    (updateBookEmitter)="updateBook($event)"></app-addbook>

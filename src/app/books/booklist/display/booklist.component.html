@@ -1,0 +1,27 @@
+<table mat-table *ngIf="booksToDisplay" [dataSource]="booksToDisplay" class="mat-table">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef> Title </th>
+    <td mat-cell *matCellDef="let book"
+      (click)="onBookSelected(book.bookId)"> {{book.title}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <!-- <ng-container matColumnDef="stars">
+    <th mat-header-cell *matHeaderCellDef> Stars </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container> -->
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="author">
+    <th mat-header-cell *matHeaderCellDef> Author </th>
+    <td mat-cell *matCellDef="let book" (click)="onAuthorSelected(book.author.authorId)"> {{book.author.author_lastname + ',' + book.author.author_firstname}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+  <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+</table>

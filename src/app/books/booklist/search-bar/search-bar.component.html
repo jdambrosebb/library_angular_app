@@ -1,0 +1,23 @@
+<form class="search-form">
+  <mat-form-field >
+    <mat-label>Search: </mat-label>
+    <input matInput type="text" id='search-box'/>
+  </mat-form-field>
+
+  <div class="genres" *ngIf = "state.showGenreSearch; then showGenreSearch else hideGenreSearch"></div>
+</form>
+
+<ng-template #showGenreSearch>
+  <button mat-icon-button (click)="toggleShowGenre()"><</button>
+    <fieldset>
+    <div *ngFor="let genre of genres">
+      <input type="checkbox" (id) = "genre" (change)="onChange(genre)">
+      <label for = genre >{{genre}}</label>
+    </div>
+  </fieldset>
+</ng-template>
+
+<ng-template #hideGenreSearch>
+  <button mat-icon-button (click)="toggleShowGenre()">
+    <mat-icon>arrow_drop_down</mat-icon></button>
+</ng-template>
